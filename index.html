@@ -99,6 +99,35 @@
   .note.on{display:block}
   .sum{font-size:13px;color:var(--sub);text-align:center;margin-bottom:8px}
   .sum b{color:var(--ink)}
+  .h2row{display:flex;align-items:baseline;justify-content:space-between;margin:0 4px 10px}
+  .h2row h2{margin:0}
+  .h2row span{font-size:12.5px;color:var(--sub);font-weight:600}
+  .ck{list-style:none;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:2px 14px}
+  .ck li{display:flex;align-items:center;gap:8px;padding:11px 0}
+  .ck li+li{border-top:1px solid var(--line)}
+  .ck label{flex:1;display:flex;align-items:center;gap:12px;cursor:pointer;font-size:14.5px;font-weight:600}
+  .ck input{position:absolute;opacity:0;pointer-events:none}
+  .ck .bx{flex:none;width:22px;height:22px;border-radius:7px;border:1.5px solid #cfc5b8;background:#fff;display:grid;place-items:center}
+  .ck input:checked+.bx{background:var(--ok,#2f6b4f);border-color:#2f6b4f}
+  .ck input:checked+.bx::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2.4px 2.4px 0;transform:rotate(45deg) translate(-1px,-1px)}
+  .ck input:checked~span:last-child{color:#8a8279;text-decoration:line-through;text-decoration-color:#c9bfb2}
+  .ck small{display:block;font-size:12px;font-weight:500;color:var(--sub);text-decoration:none}
+  .ck a{flex:none;font-size:12.5px;font-weight:700;color:#fff;background:var(--ink);padding:6px 11px;border-radius:999px;text-decoration:none}
+  .ck li.opt .bx{border-style:dashed}
+  .ck-note{font-size:11.5px;color:#9a9188;margin:6px 4px 0}
+  .q-lead{font-size:13.5px;color:var(--sub);margin:-4px 4px 12px}
+  .q-t{font-size:13px;font-weight:700;color:var(--sub);margin:14px 4px 8px}
+  .aiuse{display:flex;flex-wrap:wrap;gap:6px}
+  .aiuse label{position:relative;font-size:14px;font-weight:700;padding:9px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);cursor:pointer}
+  .aiuse input{position:absolute;opacity:0;pointer-events:none}
+  .aiuse label:has(input:checked){background:var(--ink);border-color:var(--ink);color:#fff}
+  .field textarea{width:100%;border:0;outline:0;background:transparent;font:inherit;font-size:16px;color:var(--ink);padding:12px 0;resize:none}
+  .made{margin-top:30px;background:#1d1b19;color:#efe9e1;border-radius:18px;padding:18px}
+  .md-t{font-size:15.5px;font-weight:800}
+  .md-g{display:grid;gap:10px;margin-top:12px}
+  .md-g div{font-size:13px;line-height:1.55;color:#cfc6ba}
+  .md-g b{display:block;font-size:12px;letter-spacing:.06em;color:#c9a463;margin-bottom:2px}
+  .md-p{margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.12);font-size:12.5px;color:#b9afa2;line-height:1.55}
   .mine{display:none;margin-top:12px;background:#eef5f0;border:1px solid #cfe2d6;border-radius:14px;padding:12px 15px;font-size:14px;color:#1f4a36}
   .closed{display:none;margin-top:12px;background:#fff1ef;border:1px solid #efcbc5;border-radius:14px;padding:14px;font-size:14px;color:var(--accent);text-align:center;font-weight:600}
   .foot{margin-top:26px;font-size:11.5px;color:#9a9188;text-align:center;line-height:1.7}
@@ -156,10 +185,16 @@
   </section>
 
   <section>
-    <h2>준비물</h2>
-    <div class="prep">
-      <span>노트북 · 충전기</span><span>어사이드 설치 · 로그인</span><span>Claude · ChatGPT 유료 구독(지사별)</span><span>투데이N · 유튜브 · 블로그 로그인</span><span class="opt">멀티탭 <small>가능하신 분</small></span>
-    </div>
+    <div class="h2row"><h2>당일 전 체크리스트</h2><span id="ckCount">0/6</span></div>
+    <ul class="ck" id="ck">
+      <li><label><input type="checkbox" data-k="laptop"><span class="bx"></span><span>노트북 · 충전기</span></label></li>
+      <li><label><input type="checkbox" data-k="install"><span class="bx"></span><span>어사이드 설치 <small>macOS 15 이상 · Windows 10/11</small></span></label><a href="https://aside.com/download" target="_blank" rel="noopener">설치하기</a></li>
+      <li><label><input type="checkbox" data-k="login"><span class="bx"></span><span>어사이드 로그인 <small>계정을 미리 만들어 두세요</small></span></label></li>
+      <li><label><input type="checkbox" data-k="ai"><span class="bx"></span><span>Claude · ChatGPT 유료 구독 확인 <small>지사별</small></span></label></li>
+      <li><label><input type="checkbox" data-k="sites"><span class="bx"></span><span>투데이N · 유튜브 · 블로그 로그인 확인</span></label></li>
+      <li class="opt"><label><input type="checkbox" data-k="tap"><span class="bx"></span><span>멀티탭 <small>가능하신 분</small></span></label></li>
+    </ul>
+    <p class="ck-note">체크한 내용은 이 휴대폰에만 저장돼요.</p>
   </section>
 
   <section id="order" class="order">
@@ -198,6 +233,24 @@
     <div class="field note" id="noteBox"><input id="note" maxlength="60" placeholder=""></div>
   </section>
 
+  <section>
+    <div class="h2row"><h2>워크숍 사전 질문</h2><span>선택</span></div>
+    <p class="q-lead">실습 예시를 여러분 업무에 맞추려고 해요.</p>
+    <div class="q-t">지금 쓰는 AI</div>
+    <div class="aiuse" id="aiuse"></div>
+    <div class="q-t">AI에게 맡기고 싶은 내 업무 한 가지</div>
+    <div class="field"><textarea id="task" maxlength="200" rows="2" placeholder="예: 기사 초안, 설교 숏폼, 행정 서류, 영상 자막"></textarea></div>
+  </section>
+
+  <div class="made">
+    <div class="md-t">이 안내 페이지는 AI와 함께 만들었어요</div>
+    <div class="md-g">
+      <div><b>AI가 한 일</b><span>운영계획 요약 · 식당 메뉴판과 가격 확인 · 페이지 디자인과 제작 · 신청 결과 자동 집계</span></div>
+      <div><b>사람이 한 일</b><span>식당·메뉴·예산 결정 · 사진 선택 · 문구 검수와 최종 확인</span></div>
+    </div>
+    <div class="md-p">모든 대외 산출물은 사람이 검수한 뒤 게시합니다. 11시 AI 도구 설명 시간에 만드는 과정을 보여드릴게요.</div>
+  </div>
+
   <div class="foot">유니짜장 외 음식 사진은 무료 스톡 이미지로, 실제 음식과 다를 수 있습니다.<br>점심 비용은 행사에서 일괄 결제합니다 · 문의 광역본부 콘텐츠지원국</div>
 </div>
 
@@ -226,6 +279,7 @@ const DRINKS = [
   { id:'차·기타', short:'TEA', sub:'요청사항 적기', bg:'#e8f1ea', fg:'#2f6b4f', ph:'요청사항 (예: 캐모마일, 유자차, 아이스티)' }
 ];
 const $ = id => document.getElementById(id);
+const AI_USE = ['ChatGPT', 'Claude', '둘 다', '아직 안 씀'];
 const ro = w => { const c = w.charCodeAt(w.length-1) - 0xAC00; const j = c % 28; return w + ((c < 0 || c > 11171 || j === 0 || j === 8) ? '로' : '으로'); };
 const won = n => n.toLocaleString('ko-KR') + '원';
 const chk = '<svg width="14" height="14" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -236,6 +290,16 @@ const card = m => `<label class="m${m.group==='feat'?' feat':''}">
   <span class="chk">${chk}</span></label>`;
 ['feat','noodle','rice'].forEach(g => { $({feat:'menusFeat',noodle:'menusNoodle',rice:'menusRice'}[g]).innerHTML = MENUS.filter(m=>m.group===g).map(card).join(''); });
 $('drinks').innerHTML = DRINKS.map((d,i) => `<label class="dk"><input type="radio" name="drink" value="${d.id}"${i===0?' checked':''}><span class="ico" style="background:${d.bg};color:${d.fg}">${d.short}</span><span>${d.id}<small>${d.sub}</small></span></label>`).join('');
+$('aiuse').innerHTML = AI_USE.map(a => `<label><input type="radio" name="ai" value="${a}">${a}</label>`).join('');
+const aiVal = () => (document.querySelector('input[name="ai"]:checked')||{}).value || '';
+(function(){
+  const KEY = 'ck1109'; let st = {};
+  try { st = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){}
+  const boxes = [...document.querySelectorAll('#ck input')];
+  const upd = () => { const n = boxes.filter(b => b.checked).length; $('ckCount').textContent = n === boxes.length ? '준비 완료' : `${n}/${boxes.length}`; };
+  boxes.forEach(b => { b.checked = !!st[b.dataset.k]; b.addEventListener('change', () => { st[b.dataset.k] = b.checked; localStorage.setItem(KEY, JSON.stringify(st)); upd(); }); });
+  upd();
+})();
 const drinkVal = () => (document.querySelector('input[name="drink"]:checked')||{}).value;
 const menuVal = () => (document.querySelector('input[name="menu"]:checked')||{}).value;
 const closed = Date.now() > new Date(CONFIG.DEADLINE).getTime();
@@ -262,7 +326,7 @@ const hide = () => $('modal').classList.remove('on');
 const showMine = (menu, drink, note) => { $('mine').style.display='block'; $('mine').innerHTML = `내 신청: <b>${esc(menu)}</b> · <b>${dTxt(drink, note)}</b> <span style="opacity:.7">(다시 신청하면 바뀝니다)</span>`; };
 
 async function send(overwrite){
-  const data = { name:$('name').value.trim(), menu:menuVal(), drink:drinkVal(), note: needNote() ? $('note').value.trim() : '', overwrite:!!overwrite };
+  const data = { name:$('name').value.trim(), menu:menuVal(), drink:drinkVal(), note: needNote() ? $('note').value.trim() : '', ai: aiVal(), task: $('task').value.trim(), overwrite:!!overwrite };
   $('go').disabled = true; $('go').textContent = '보내는 중...';
   try{
     const j = await (await fetch(CONFIG.API_URL, { method:'POST', body: JSON.stringify(data) })).json();
@@ -288,7 +352,7 @@ $('go').onclick = () => {
     const saved = localStorage.getItem('lunch1109'); if (!saved) return;
     $('name').value = saved;
     const j = await (await fetch(`${CONFIG.API_URL}?action=lookup&name=${encodeURIComponent(saved)}`)).json();
-    if (j.status==='found'){ showMine(j.menu, j.drink, j.note); if (j.note) $('note').value = j.note; const mi = document.querySelector(`input[name="menu"][value="${j.menu}"]`); if (mi) mi.checked = true; const di = document.querySelector(`input[name="drink"][value="${j.drink}"]`); if (di) di.checked = true; refresh(); }
+    if (j.status==='found'){ showMine(j.menu, j.drink, j.note); if (j.note) $('note').value = j.note; if (j.task) $('task').value = j.task; if (j.ai) { const ai = document.querySelector(`input[name="ai"][value="${j.ai}"]`); if (ai) ai.checked = true; } const mi = document.querySelector(`input[name="menu"][value="${j.menu}"]`); if (mi) mi.checked = true; const di = document.querySelector(`input[name="drink"][value="${j.drink}"]`); if (di) di.checked = true; refresh(); }
   }catch(e){}
 })();
 </script>
