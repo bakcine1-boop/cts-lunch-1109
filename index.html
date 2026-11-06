@@ -47,7 +47,10 @@
   .v-bar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
   .v-bar button{border:0;border-radius:999px;font:inherit;font-size:15px;font-weight:700;padding:11px 18px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
   .v-sound{background:#fff;color:#1d1b19}
-  .v-sound[hidden]{display:none}
+  .v-sound .mx{display:none}
+  .v-sound.muted{animation:vpulse 1.6s ease-in-out infinite}
+  .v-sound.on{background:rgba(255,255,255,.14);color:#fff}
+  @keyframes vpulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.55)}50%{box-shadow:0 0 0 9px rgba(255,255,255,0)}}
   .v-skip{background:rgba(255,255,255,.14);color:#fff}
   .v-close{position:absolute;top:calc(10px + env(safe-area-inset-top));right:14px;width:40px;height:40px;border:0;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:29px;line-height:1;cursor:pointer}
   .thanks{margin-top:22px;display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start;background:#fbf4e8;border:1px solid #efe0c6;border-radius:16px;padding:14px 16px}
@@ -291,7 +294,7 @@
   <button class="v-close" id="vidClose" type="button" aria-label="닫기">×</button>
   <video id="vid" controls playsinline preload="none" poster="sitcom_poster.jpg"><source src="sitcom.mp4" type="video/mp4"></video>
   <div class="v-bar">
-    <button class="v-sound" id="vidSound" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/></svg>소리 켜기</button>
+    <button class="v-sound" id="vidSound" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" d="M16.5 8.5a5 5 0 0 1 0 7"/><path class="w2" d="M19 6a8.5 8.5 0 0 1 0 12"/><path class="mx" d="M16 9l5 6M21 9l-5 6"/></svg><span id="vidSoundTx">소리 켜기</span></button>
     <button class="v-skip" id="vidSkip" type="button">건너뛰고 안내 보기</button>
   </div>
 </div>
@@ -322,7 +325,7 @@ const $ = id => document.getElementById(id);
 const AI_USE = ['ChatGPT', 'Claude', '둘 다', '아직 안 씀'];
 const vEl = $('vid');
 const markSeen = () => { try { localStorage.setItem('intro1109', '1'); } catch(e){} };
-const syncSound = () => { $('vidSound').hidden = !vEl.muted; };
+const syncSound = () => { const b = $('vidSound'); b.classList.toggle('muted', vEl.muted); b.classList.toggle('on', !vEl.muted); $('vidSoundTx').textContent = vEl.muted ? '소리 켜기' : '소리 끄기'; b.querySelector('.mx').style.display = vEl.muted ? 'none' : ''; b.querySelector('.w1').style.display = vEl.muted ? '' : 'none'; b.querySelector('.w2').style.display = vEl.muted ? '' : 'none'; };
 async function openVid(auto){
   $('vmodal').classList.add('on');
   vEl.preload = 'auto';
@@ -335,7 +338,7 @@ const closeVid = () => { vEl.pause(); $('vmodal').classList.remove('on'); markSe
 $('vidOpen').onclick = () => openVid(false);
 $('vidClose').onclick = closeVid;
 $('vidSkip').onclick = closeVid;
-$('vidSound').onclick = () => { vEl.muted = false; vEl.volume = 1; vEl.play().catch(()=>{}); syncSound(); };
+$('vidSound').onclick = () => { if (vEl.muted) { vEl.muted = false; vEl.volume = 1; vEl.play().catch(()=>{}); } else { vEl.muted = true; } syncSound(); };
 vEl.addEventListener('volumechange', syncSound);
 vEl.addEventListener('ended', closeVid);
 $('vmodal').addEventListener('click', e => { if (e.target.id === 'vmodal') closeVid(); });
