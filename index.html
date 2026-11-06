@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>11.9 킥오프 워크숍 점심·커피 신청</title>
-<meta property="og:title" content="11.9 킥오프 워크숍 점심·커피 신청">
-<meta property="og:description" content="희락반점(생활의 달인 소개) · 미신청 시 유니짜장·따뜻한 아메리카노로 준비합니다">
+<title>11.9 AI First 엑소더스 킥오프 워크숍 안내</title>
+<meta property="og:title" content="11.9 AI First 엑소더스 킥오프 워크숍 안내">
+<meta property="og:description" content="주요 일정 · 준비물 · 점심(희락반점)과 커피 사전 신청">
 <meta property="og:image" content="https://bakcine1-boop.github.io/cts-lunch-1109/og.jpg">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
@@ -15,17 +15,40 @@
   html{-webkit-text-size-adjust:100%}
   body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;letter-spacing:-0.01em}
 
-  .hd{max-width:520px;margin:0 auto;padding:34px 18px 4px}
-  .hd>.ey,.hd>h1,.hd>.lead{padding:0 4px}
-  .ey{font-size:12px;letter-spacing:.12em;color:#a8803f;font-weight:600}
-  h1{font-size:28px;line-height:1.28;font-weight:800;letter-spacing:-0.035em;margin-top:10px}
-  .lead{font-size:15px;color:var(--sub);margin-top:10px}
-  .place{margin-top:18px;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:14px}
+  .hd{max-width:520px;margin:0 auto;padding:22px 18px 0}
+  .logo{display:block;height:26px;width:auto;margin:0 4px 16px}
+  .hero{position:relative;border-radius:20px;overflow:hidden;padding:26px 22px 24px;color:#fff;background:#14121a url(hero_bg.jpg) center/cover}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(14,12,20,.78) 0%,rgba(14,12,20,.45) 60%,rgba(14,12,20,.2) 100%)}
+  .hero>*{position:relative}
+  .h-ey{font-size:12px;letter-spacing:.14em;font-weight:600;opacity:.85}
+  .hero h1{font-size:27px;line-height:1.25;font-weight:800;letter-spacing:-0.03em;margin-top:8px}
+  .h-meta{font-size:14px;line-height:1.55;margin-top:14px;opacity:.92}
+  .h-meta b{font-weight:700}
+  .facts2{margin-top:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 16px}
+  .f2{display:grid;grid-template-columns:40px 1fr;gap:8px;font-size:13.5px;padding:10px 0;color:#3a3530}
+  .f2+.f2{border-top:1px solid var(--line)}
+  .k2{font-weight:700;color:var(--sub)}
+  .tl{list-style:none;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px 16px}
+  .tl li{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:11px 0;font-size:14.5px;font-weight:600}
+  .tl li+li{border-top:1px solid var(--line)}
+  .tl time{font-variant-numeric:tabular-nums;color:var(--sub);font-weight:700}
+  .tl small{display:block;font-size:12.5px;font-weight:500;color:var(--sub);margin-top:1px}
+  .tl .lunch{background:#fbf1ee;margin:0 -16px;padding:12px 16px;border-top-color:transparent}
+  .tl .lunch+li{border-top-color:transparent}
+  .tl .lunch time{color:var(--accent)}
+  .tl .pl{color:var(--accent)}
+  .tl .lunch a{display:inline-block;margin-left:8px;font-size:12.5px;font-weight:700;color:#fff;background:var(--accent);padding:3px 9px;border-radius:999px;text-decoration:none}
+  .prep{display:flex;flex-wrap:wrap;gap:6px}
+  .prep span{font-size:13px;font-weight:600;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 11px}
+  .order{scroll-margin-top:12px;margin-top:34px;padding-top:26px;border-top:1px solid var(--line)}
+  h2.big{font-size:22px;letter-spacing:-0.02em}
+  .lead{font-size:14.5px;color:var(--sub);margin:-4px 4px 0}
+  .place{margin-top:12px;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:14px}
   .pl-name{font-size:16px;font-weight:800;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .chip{font-size:11.5px;font-weight:700;color:var(--accent);background:#f7e8e5;padding:3px 8px;border-radius:999px}
   .pl-meta{font-size:13px;color:var(--sub);margin-top:3px}
   .wrap{max-width:520px;margin:0 auto;padding:0 18px 140px}
-  .wrap>.notice:first-child{margin-top:12px}
+  html{scroll-behavior:smooth}
   .notice{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px}
   .notice .t{font-size:16px;font-weight:800}
   .notice .t em{font-style:normal;color:var(--accent)}
@@ -92,16 +115,47 @@
 </head>
 <body>
 <header class="hd">
-  <div class="ey">AI First 엑소더스 · 킥오프 워크숍</div>
-  <h1>11월 9일 점심과<br>커피를 골라 주세요</h1>
-  <p class="lead">멀리서 오시는 만큼 점심은 대전의 맛집으로 준비했어요.</p>
-  <div class="place">
-    <div class="pl-name">희락반점 <span class="chip">SBS 생활의 달인 소개</span></div>
-    <div class="pl-meta">11.9(월) 12:00 · 대전 중구 중앙로129번길 21</div>
+  <img class="logo" src="cts_logo.png" alt="CTS기독교TV">
+  <div class="hero">
+    <div class="h-ey">CTS 광역본부</div>
+    <h1>AI First 엑소더스<br>킥오프 워크숍</h1>
+    <div class="h-meta"><b>11월 9일(월) 10:00 – 16:00</b><br>대전테크노파크 디스테이션 10층</div>
+  </div>
+  <div class="facts2">
+    <div class="f2"><span class="k2">위치</span><span>대전 중구 중앙로 119 · 중앙로역 6번 출구 도보 약 2분</span></div>
+    <div class="f2"><span class="k2">주차</span><span>대전광역시 도시재생본부(무료) 또는 지하주차장(유료)</span></div>
   </div>
 </header>
 
 <div class="wrap">
+  <section class="sch">
+    <h2>주요 일정</h2>
+    <ol class="tl">
+      <li><time>10:00</time><div>여는 기도</div></li>
+      <li><time>10:05</time><div>비전 발표 「애굽을 떠나 가나안으로」<small>강경원 부사장</small></div></li>
+      <li><time>11:00</time><div>AI 도구 설명<small>어사이드 소개 · 설치 · 운영 사례</small></div></li>
+      <li class="lunch"><time>12:00</time><div>점심 · 티타임 <span class="pl">희락반점</span><a href="#order">메뉴 고르기 ↓</a></div></li>
+      <li><time>13:00</time><div>실습 3개 · 사례 발표 2개<small>뉴스 자동화 · 숏폼 · 롱폼</small></div></li>
+      <li><time>15:30</time><div>총평 · 마치는 기도</div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>준비물</h2>
+    <div class="prep">
+      <span>노트북 · 충전기</span><span>어사이드 설치 · 로그인</span><span>Claude · ChatGPT 유료 구독(지사별)</span><span>투데이N · 유튜브 · 블로그 로그인</span>
+    </div>
+  </section>
+
+  <section id="order" class="order">
+    <h2 class="big">점심 · 커피 신청</h2>
+    <p class="lead">멀리서 오시는 만큼 점심은 대전의 맛집으로 준비했어요.</p>
+    <div class="place">
+      <div class="pl-name">희락반점 <span class="chip">SBS 생활의 달인 소개</span></div>
+      <div class="pl-meta">11.9(월) 12:00 · 대전 중구 중앙로129번길 21</div>
+    </div>
+  </section>
+
   <div class="notice">
     <div class="t">신청하지 않으면 <em>유니짜장</em>과 <em>따아</em>로 준비해요</div>
     <div class="d">다른 메뉴를 원하는 분만 <b>11월 8일(일) 밤 9시</b>까지 골라 주세요. 1인 1메뉴, 음료 1잔입니다.</div>
