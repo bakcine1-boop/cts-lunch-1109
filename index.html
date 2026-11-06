@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>11.9 킥오프 워크숍 점심 · 희락반점 사전 주문</title>
+<meta property="og:title" content="11.9 킥오프 워크숍 점심 메뉴 신청">
+<meta property="og:description" content="희락반점 · 1인 1메뉴 · 미신청 시 유니짜장으로 준비합니다">
+<meta property="og:image" content="https://bakcine1-boop.github.io/cts-lunch-1109/og.jpg">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --bg:#f6f3ee; --card:#fffdf9; --ink:#1d1b19; --sub:#6b645c; --line:#e6dfd5;
+    --accent:#9e2a22; --accent-soft:#f5e7e4; --gold:#a8803f; --ok:#2f6b4f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;letter-spacing:-0.01em}
+  .wrap{max-width:520px;margin:0 auto;padding:0 18px 150px}
+  header{padding:34px 4px 22px}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--gold);text-transform:uppercase}
+  h1{font-size:28px;line-height:1.25;font-weight:800;margin-top:10px;letter-spacing:-0.03em}
+  h1 em{font-style:normal;color:var(--accent)}
+  .meta{margin-top:12px;font-size:14px;color:var(--sub)}
+  .meta b{color:var(--ink);font-weight:600}
+
+  .hero{position:relative;border-radius:18px;overflow:hidden;background:#222;aspect-ratio:16/10}
+  .hero img{width:100%;height:100%;object-fit:cover;display:block;opacity:.92}
+  .hero .cap{position:absolute;left:0;right:0;bottom:0;padding:18px 18px 16px;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff}
+  .hero .cap .han{font-size:13px;letter-spacing:.3em;opacity:.8}
+  .hero .cap .nm{font-size:22px;font-weight:800;margin-top:2px}
+  .hero .cap .ad{font-size:12.5px;opacity:.85;margin-top:2px}
+
+  .story{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:12px}
+  .story p{font-size:14.5px;color:#3a3530}
+  .badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .badge{font-size:12px;font-weight:600;padding:5px 9px;border-radius:999px;background:#f1ebe2;color:#5a4a33}
+  .src{font-size:11px;color:#9a9188;margin-top:10px}
+
+  .rules{margin-top:12px;display:grid;gap:8px}
+  .rule{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 15px;font-size:14px}
+  .rule .n{flex:none;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center;margin-top:1px}
+  .rule b{font-weight:700}
+  .rule.hl{border-color:#e7c9c4;background:var(--accent-soft)}
+  .rule.hl .n{background:var(--accent)}
+
+  section{margin-top:30px}
+  .sec-t{display:flex;align-items:baseline;justify-content:space-between;margin:0 4px 12px}
+  .sec-t h2{font-size:18px;font-weight:800}
+  .sec-t span{font-size:12.5px;color:var(--sub)}
+
+  .field{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px 16px}
+  .row{display:flex;align-items:center;gap:12px;padding:12px 0}
+  .row+.row{border-top:1px solid var(--line)}
+  .row label{flex:none;width:44px;font-size:14px;font-weight:600;color:var(--sub)}
+  .row select,.row input,.row textarea{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:16px;color:var(--ink);padding:4px 0;min-width:0}
+  .row textarea{resize:none;height:44px}
+  .row select{appearance:none;-webkit-appearance:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b645c' stroke-width='1.6' fill='none'/%3E%3C/svg%3E") right center no-repeat}
+
+  .group-t{font-size:13px;font-weight:700;color:var(--sub);margin:18px 4px 8px;letter-spacing:.04em}
+  .menus{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .m{position:relative;display:block;background:var(--card);border:1.5px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;transition:border-color .15s, box-shadow .15s}
+  .m input{position:absolute;opacity:0;pointer-events:none}
+  .m .ph{aspect-ratio:1/1;background:#ddd;overflow:hidden}
+  .m .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .m .tx{padding:10px 12px 12px}
+  .m .nm{font-size:15.5px;font-weight:700}
+  .m .pr{font-size:13px;color:var(--sub);margin-top:1px}
+  .m .ds{font-size:12px;color:#8a8279;margin-top:4px;line-height:1.4}
+  .m .tag{position:absolute;top:8px;left:8px;font-size:11px;font-weight:700;padding:4px 8px;border-radius:999px;background:var(--accent);color:#fff}
+  .m .chk{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.9);border:1.5px solid #d6cdc1;display:grid;place-items:center}
+  .m .chk svg{opacity:0}
+  .m:has(input:checked){border-color:var(--accent);box-shadow:0 0 0 3px rgba(158,42,34,.12)}
+  .m:has(input:checked) .chk{background:var(--accent);border-color:var(--accent)}
+  .m:has(input:checked) .chk svg{opacity:1}
+  .menus.list{grid-template-columns:1fr;gap:8px}
+  .menus.list .m{display:grid;grid-template-columns:84px 1fr;align-items:center}
+  .menus.list .m .ph{aspect-ratio:1/1;height:84px}
+  .menus.list .m .tx{padding:10px 48px 10px 14px}
+  .menus.list .m .nm{font-size:16px}
+  .menus.list .m .pr{font-size:13px}
+  .menus.list .m .chk{top:50%;transform:translateY(-50%);right:14px}
+  .m.feat{grid-column:1 / -1;display:grid;grid-template-columns:44% 1fr}
+  .m.feat .ph{aspect-ratio:auto;height:100%;min-height:150px}
+  .m.feat .tx{padding:16px 16px;display:flex;flex-direction:column;justify-content:center}
+  .m.feat .nm{font-size:19px}
+  .m.feat .ds{font-size:12.5px}
+
+  .tang{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .tang .ph{aspect-ratio:16/9;overflow:hidden}
+  .tang .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 70%;display:block}
+  .tang .tx{padding:14px 16px 16px}
+  .tang .nm{font-size:17px;font-weight:800}
+  .tang .ds{font-size:13px;color:var(--sub);margin-top:3px}
+  .seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+  .seg label{position:relative;display:block;text-align:center;border:1.5px solid var(--line);border-radius:12px;padding:12px 6px;font-size:15px;font-weight:700;cursor:pointer;background:#fff}
+  .seg input{position:absolute;opacity:0;pointer-events:none}
+  .seg label:has(input:checked){border-color:var(--ink);background:var(--ink);color:#fff}
+
+  .bar{position:fixed;left:0;right:0;bottom:0;padding:10px 18px calc(12px + env(safe-area-inset-bottom));background:rgba(246,243,238,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--line)}
+  .bar .in{max-width:520px;margin:0 auto}
+  .sum{font-size:13px;color:var(--sub);text-align:center;margin-bottom:8px;min-height:19px}
+  .sum b{color:var(--ink)}
+  button.go{width:100%;border:0;border-radius:14px;background:var(--ink);color:#fff;font:inherit;font-size:17px;font-weight:700;padding:16px;cursor:pointer}
+  button.go:disabled{opacity:.45}
+
+  .mine{display:none;margin-top:12px;background:#eef5f0;border:1px solid #cfe2d6;border-radius:14px;padding:13px 15px;font-size:14px;color:#1f4a36}
+  .mine b{font-weight:700}
+
+  .foot{margin-top:28px;font-size:12px;color:#9a9188;text-align:center;line-height:1.7}
+
+  .modal{position:fixed;inset:0;background:rgba(20,18,16,.5);display:none;align-items:flex-end;justify-content:center;z-index:10}
+  .modal.on{display:flex}
+  .sheet{width:100%;max-width:520px;background:#fff;border-radius:22px 22px 0 0;padding:26px 22px calc(22px + env(safe-area-inset-bottom));text-align:center}
+  .sheet .ic{width:54px;height:54px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;background:#eef5f0}
+  .sheet h3{font-size:20px;font-weight:800}
+  .sheet p{font-size:14.5px;color:var(--sub);margin-top:8px}
+  .sheet .btns{display:grid;gap:8px;margin-top:18px}
+  .sheet button{border:0;border-radius:12px;font:inherit;font-size:16px;font-weight:700;padding:14px;cursor:pointer}
+  .sheet .pri{background:var(--ink);color:#fff}
+  .sheet .sec{background:#f1ede7;color:var(--ink)}
+  .closed{display:none;margin-top:12px;background:#fff1ef;border:1px solid #efcbc5;border-radius:14px;padding:14px;font-size:14px;color:var(--accent);text-align:center;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">AI First 엑소더스 · 킥오프 워크숍</div>
+    <h1>11월 9일 점심,<br><em>희락반점</em>에서 함께해요</h1>
+    <div class="meta"><b>11.9(월) 12:00</b> · 1인 1메뉴 사전 신청</div>
+  </header>
+
+  <div class="hero">
+    <img src="uni.jpg" alt="짜장면 참고 이미지">
+    <div class="cap">
+      <div class="han">喜樂飯店</div>
+      <div class="nm">희락반점</div>
+      <div class="ad">대전 중구 중앙로129번길 21 · 042-256-0273</div>
+    </div>
+  </div>
+
+  <div class="story">
+    <p>1912년 문을 연 것으로 알려진 대전 원도심의 화상(華商) 노포입니다. 3대째 면을 뽑아 온 집으로, 다진 고기로 볶은 <b>유니짜장</b>과 찹쌀 튀김옷의 <b>옛날 탕수육</b>이 대표 메뉴예요. 점심엔 줄이 서는 곳이라 미리 주문을 모아 두려고 합니다.</p>
+    <div class="badges">
+      <span class="badge">100년 넘은 노포</span>
+      <span class="badge">SBS 생활의 달인</span>
+      <span class="badge">블루리본 서베이</span>
+      <span class="badge">대전시 3대 30년 전통업소</span>
+    </div>
+    <div class="src">개업 연도는 언론·후기 기준이며 출처에 따라 표기가 다를 수 있습니다.</div>
+  </div>
+
+  <div class="rules">
+    <div class="rule hl"><div class="n">1</div><div><b>신청하지 않으면 대표 메뉴 유니짜장</b>으로 준비합니다. 다른 메뉴를 원하는 분만 신청해 주셔도 됩니다.</div></div>
+    <div class="rule"><div class="n">2</div><div><b>1인 1메뉴</b>입니다. 같은 이름으로 다시 신청하면 기존 주문이 바뀝니다.</div></div>
+    <div class="rule"><div class="n">3</div><div>마감 <b id="deadlineText">11월 8일(일) 오후 9시</b></div></div>
+  </div>
+  <div class="mine" id="mine"></div>
+  <div class="closed" id="closed">신청이 마감되었습니다. 변경은 콘텐츠지원국에 말씀해 주세요.</div>
+
+  <form id="f" autocomplete="on">
+    <section>
+      <div class="sec-t"><h2>누구신가요</h2><span>주문 확인용</span></div>
+      <div class="field">
+        <div class="row"><label for="team">소속</label>
+          <select id="team" name="team" required>
+            <option value="">선택해 주세요</option>
+            <optgroup label="중부총국"><option>대전</option><option>충북</option><option>강원</option></optgroup>
+            <optgroup label="호남총국"><option>광주</option><option>전남</option><option>전북</option><option>제주</option></optgroup>
+            <optgroup label="영남총국"><option>대구</option><option>경북</option><option>경남</option><option>부산</option><option>울산</option></optgroup>
+            <optgroup label="광역본부"><option>콘텐츠지원국</option><option>설교관리국</option><option>다음세대지원센터</option><option>대외협력국</option><option>본부·기타</option></optgroup>
+          </select>
+        </div>
+        <div class="row"><label for="name">이름</label><input id="name" name="name" placeholder="홍길동" maxlength="20" required></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-t"><h2>메뉴 고르기</h2><span>하나만 선택</span></div>
+      <div class="menus" id="menusFeat"></div>
+      <div class="group-t">면</div>
+      <div class="menus list" id="menusNoodle"></div>
+      <div class="group-t">밥 · 면이 부담스러운 분</div>
+      <div class="menus list" id="menusRice"></div>
+    </section>
+
+    <section>
+      <div class="sec-t"><h2>테이블 탕수육</h2><span>선택</span></div>
+      <div class="tang">
+        <div class="ph"><img src="tang.jpg" alt="탕수육 참고 이미지" loading="lazy"></div>
+        <div class="tx">
+          <div class="nm">탕수육 같이 드실래요?</div>
+          <div class="ds">4인 테이블에 한 접시씩 나갑니다. 희망하는 분끼리 같은 테이블로 앉도록 정리할게요.</div>
+          <div class="seg">
+            <label><input type="radio" name="tang" value="예" checked>네, 좋아요</label>
+            <label><input type="radio" name="tang" value="아니오">괜찮아요</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-t"><h2>요청 사항</h2><span>선택</span></div>
+      <div class="field">
+        <div class="row"><textarea id="note" name="note" maxlength="200" placeholder="알레르기, 맵기 조절 등 (없으면 비워 두세요)"></textarea></div>
+      </div>
+    </section>
+  </form>
+
+  <div class="foot">
+    음식 사진은 무료 스톡 이미지(Pexels·Pixabay)로, 희락반점의 실제 음식과 다릅니다.<br>
+    가격은 매장 메뉴판 기준이며, 점심 비용은 행사에서 일괄 결제합니다.<br>
+    문의 · 광역본부 콘텐츠지원국
+  </div>
+</div>
+
+<div class="bar"><div class="in">
+  <div class="sum" id="sum"></div>
+  <button class="go" id="go" type="button">이 메뉴로 신청하기</button>
+</div></div>
+
+<div class="modal" id="modal"><div class="sheet">
+  <div class="ic" id="mIc"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" stroke="#2f6b4f" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <h3 id="mT"></h3>
+  <p id="mP"></p>
+  <div class="btns" id="mB"></div>
+</div></div>
+
+<script>
+const CONFIG = {
+  API_URL: 'https://script.google.com/macros/s/AKfycbwOulzX0knksWjHpDGIfqVa66HunyJOl89M9MVoj6cvNw73qx4opaj-Cxq7cRbEw6dK/exec',
+  DEADLINE: '2026-11-08T21:00:00+09:00'
+};
+const MENUS = [
+  { id:'유니짜장', img:'uni', price:8000, group:'feat', tag:'대표 · 기본', desc:'다진 돼지고기와 양파로 볶은 희락반점의 시그니처. 면과 소스가 따로 나와 비벼 드세요.' },
+  { id:'짜장면', img:'jja', price:7000, group:'noodle', desc:'옛날 그대로의 기본 짜장' },
+  { id:'간짜장', img:'gan', price:8000, group:'noodle', desc:'센 불에 바로 볶은 소스' },
+  { id:'짬뽕', img:'jjam', price:8000, group:'noodle', desc:'해물 넣은 얼큰한 국물' },
+  { id:'볶음밥', img:'bok', price:8000, group:'rice', desc:'고슬고슬 중식 볶음밥' },
+  { id:'짬뽕밥', img:'jjambap', price:9000, group:'rice', desc:'얼큰한 짬뽕 국물에 밥' },
+  { id:'잡채밥', img:'japchae', price:9000, group:'rice', desc:'중식 잡채를 곁들인 밥' }
+];
+const won = n => n.toLocaleString('ko-KR') + '원';
+const chk = '<svg width="14" height="14" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+function card(m){
+  return `<label class="m${m.group==='feat'?' feat':''}">
+    <input type="radio" name="menu" value="${m.id}" form="f"${m.group==='feat'?' checked':''}>
+    <div class="ph"><img src="${m.img}.jpg" alt="${m.id} 참고 이미지" loading="lazy"></div>
+    ${m.tag?`<span class="tag">${m.tag}</span>`:''}<span class="chk">${chk}</span>
+    <div class="tx"><div class="nm">${m.id}</div><div class="pr">${won(m.price)}</div><div class="ds">${m.desc}</div></div>
+  </label>`;
+}
+document.getElementById('menusFeat').innerHTML = MENUS.filter(m=>m.group==='feat').map(card).join('');
+document.getElementById('menusNoodle').innerHTML = MENUS.filter(m=>m.group==='noodle').map(card).join('');
+document.getElementById('menusRice').innerHTML = MENUS.filter(m=>m.group==='rice').map(card).join('');
+
+const $ = id => document.getElementById(id);
+const val = n => (document.querySelector(`input[name="${n}"]:checked`)||{}).value;
+function refresh(){
+  const menu = val('menu'), tang = val('tang');
+  $('sum').innerHTML = `<b>${menu||'메뉴 미선택'}</b> · 탕수육 ${tang==='예'?'함께':'안 함'}`;
+}
+document.addEventListener('change', refresh); refresh();
+
+const closed = Date.now() > new Date(CONFIG.DEADLINE).getTime();
+if (closed){ $('closed').style.display='block'; $('go').disabled = true; $('go').textContent='신청 마감'; }
+
+function modal(title, body, buttons, ok=true){
+  $('mT').textContent = title; $('mP').innerHTML = body;
+  $('mIc').style.display = ok ? 'grid' : 'none';
+  $('mB').innerHTML = '';
+  buttons.forEach(b => { const el = document.createElement('button'); el.className = b.cls||'pri'; el.textContent = b.label; el.onclick = b.on; $('mB').appendChild(el); });
+  $('modal').classList.add('on');
+}
+const hide = () => $('modal').classList.remove('on');
+
+function showMine(menu, tang){
+  $('mine').style.display='block';
+  $('mine').innerHTML = `내 신청: <b>${menu}</b> · 탕수육 ${tang==='예'?'함께':'안 함'} <span style="opacity:.7">(다시 신청하면 바뀝니다)</span>`;
+}
+
+async function send(overwrite){
+  const data = { team:$('team').value, name:$('name').value.trim(), menu:val('menu'), tang:val('tang'), note:$('note').value.trim(), overwrite:!!overwrite };
+  $('go').disabled = true; $('go').textContent = '보내는 중...';
+  try{
+    const r = await fetch(CONFIG.API_URL, { method:'POST', body: JSON.stringify(data) });
+    const j = await r.json();
+    if (j.status==='exists'){
+      modal('이미 신청하셨어요', `${data.team} ${data.name} 님은 <b>${j.menu}</b>(탕수육 ${j.tang==='예'?'함께':'안 함'})로 신청되어 있어요.<br><b>${data.menu}</b>(으)로 바꿀까요?`,
+        [{label:`${data.menu}(으)로 변경`, on:()=>{hide(); send(true);}}, {label:'그대로 두기', cls:'sec', on:hide}], false);
+    } else if (j.status==='ok' || j.status==='updated'){
+      localStorage.setItem('lunch1109', JSON.stringify({team:data.team, name:data.name}));
+      showMine(j.menu, j.tang);
+      modal(j.status==='ok'?'신청 완료':'변경 완료', `<b>${data.name}</b> 님 · <b>${j.menu}</b><br>탕수육 ${j.tang==='예'?'함께':'안 함'}<br><br>11월 9일 희락반점에서 뵙겠습니다.`, [{label:'확인', on:hide}]);
+    } else {
+      modal('신청이 안 됐어요', j.message || '잠시 후 다시 시도해 주세요.', [{label:'확인', on:hide}], false);
+    }
+  }catch(e){
+    modal('연결이 원활하지 않아요', '잠시 후 다시 시도해 주세요.', [{label:'확인', on:hide}], false);
+  }finally{
+    if(!closed){ $('go').disabled = false; $('go').textContent = '이 메뉴로 신청하기'; }
+  }
+}
+
+$('go').onclick = () => {
+  if (!$('team').value){ $('team').focus(); modal('소속을 골라 주세요', '', [{label:'확인', on:()=>{hide(); $('team').scrollIntoView({block:'center'});}}], false); return; }
+  if (!$('name').value.trim()){ modal('이름을 적어 주세요', '', [{label:'확인', on:()=>{hide(); $('name').focus();}}], false); return; }
+  send(false);
+};
+
+(async () => {
+  try{
+    const saved = JSON.parse(localStorage.getItem('lunch1109')||'null');
+    if (!saved) return;
+    $('team').value = saved.team; $('name').value = saved.name;
+    const r = await fetch(`${CONFIG.API_URL}?action=lookup&team=${encodeURIComponent(saved.team)}&name=${encodeURIComponent(saved.name)}`);
+    const j = await r.json();
+    if (j.status==='found'){
+      showMine(j.menu, j.tang);
+      const mi = document.querySelector(`input[name="menu"][value="${j.menu}"]`); if (mi) mi.checked = true;
+      const ti = document.querySelector(`input[name="tang"][value="${j.tang}"]`); if (ti) ti.checked = true;
+      refresh();
+    }
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
