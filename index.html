@@ -65,6 +65,8 @@
   .dk .ico{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800}
   .dk small{display:block;font-size:11.5px;font-weight:500;color:var(--sub)}
   .dk:has(input:checked){border-color:var(--accent);box-shadow:0 0 0 3px rgba(163,38,29,.12)}
+  .note{display:none;margin-top:8px;border-color:var(--accent)}
+  .note.on{display:block}
   .sum{font-size:13px;color:var(--sub);text-align:center;margin-bottom:8px}
   .sum b{color:var(--ink)}
   .mine{display:none;margin-top:12px;background:#eef5f0;border:1px solid #cfe2d6;border-radius:14px;padding:12px 15px;font-size:14px;color:#1f4a36}
@@ -101,7 +103,7 @@
 
 <div class="wrap">
   <div class="notice">
-    <div class="t">신청하지 않으면 <em>유니짜장</em>과 <em>따뜻한 아메리카노</em>로 준비해요</div>
+    <div class="t">신청하지 않으면 <em>유니짜장</em>과 <em>따아</em>로 준비해요</div>
     <div class="d">다른 메뉴를 원하는 분만 <b>11월 8일(일) 밤 9시</b>까지 골라 주세요. 1인 1메뉴, 음료 1잔입니다.</div>
   </div>
   <div class="mine" id="mine"></div>
@@ -124,6 +126,7 @@
   <section>
     <h2>식후 커피</h2>
     <div class="drinks" id="drinks"></div>
+    <div class="field note" id="noteBox"><input id="note" maxlength="60" placeholder=""></div>
   </section>
 
   <div class="foot">유니짜장 외 음식 사진은 무료 스톡 이미지로, 실제 음식과 다를 수 있습니다.<br>점심 비용은 행사에서 일괄 결제합니다 · 문의 광역본부 콘텐츠지원국</div>
@@ -148,10 +151,10 @@ const MENUS = [
   { id:'잡채밥', img:'japchae', price:9000, group:'rice', desc:'중식 잡채를 곁들인 밥' }
 ];
 const DRINKS = [
-  { id:'따뜻한 아메리카노', label:'아메리카노', short:'HOT', sub:'따뜻하게 · 따아', bg:'#f7e8e5', fg:'#a3261d' },
-  { id:'아이스 아메리카노', label:'아메리카노', short:'ICE', sub:'차갑게 · 아아', bg:'#e6eef6', fg:'#2f5d8a' },
-  { id:'카페라떼', label:'카페라떼', short:'LAT', sub:'우유 들어간 커피', bg:'#f1ebe2', fg:'#7a5a33' },
-  { id:'차(커피 외)', label:'차', short:'TEA', sub:'커피 대신 차', bg:'#e8f1ea', fg:'#2f6b4f' }
+  { id:'따아', short:'HOT', sub:'따뜻한 아메리카노', bg:'#f7e8e5', fg:'#a3261d' },
+  { id:'아아', short:'ICE', sub:'아이스 아메리카노', bg:'#e6eef6', fg:'#2f5d8a' },
+  { id:'카페라떼', short:'LAT', sub:'요청사항 적기', bg:'#f1ebe2', fg:'#7a5a33', ph:'요청사항 (예: 아이스, 따뜻하게, 바닐라라떼)' },
+  { id:'차·기타', short:'TEA', sub:'요청사항 적기', bg:'#e8f1ea', fg:'#2f6b4f', ph:'요청사항 (예: 캐모마일, 유자차, 아이스티)' }
 ];
 const $ = id => document.getElementById(id);
 const ro = w => { const c = w.charCodeAt(w.length-1) - 0xAC00; const j = c % 28; return w + ((c < 0 || c > 11171 || j === 0 || j === 8) ? '로' : '으로'); };
@@ -163,11 +166,21 @@ const card = m => `<label class="m${m.group==='feat'?' feat':''}">
   <div class="tx"><div class="nm">${m.id}${m.group==='feat'?'<span class="tag">대표 · 기본</span>':''}</div><div class="pr">${won(m.price)}</div><div class="ds">${m.desc}</div></div>
   <span class="chk">${chk}</span></label>`;
 ['feat','noodle','rice'].forEach(g => { $({feat:'menusFeat',noodle:'menusNoodle',rice:'menusRice'}[g]).innerHTML = MENUS.filter(m=>m.group===g).map(card).join(''); });
-$('drinks').innerHTML = DRINKS.map((d,i) => `<label class="dk"><input type="radio" name="drink" value="${d.id}"${i===0?' checked':''}><span class="ico" style="background:${d.bg};color:${d.fg}">${d.short}</span><span>${d.label}<small>${d.sub}</small></span></label>`).join('');
+$('drinks').innerHTML = DRINKS.map((d,i) => `<label class="dk"><input type="radio" name="drink" value="${d.id}"${i===0?' checked':''}><span class="ico" style="background:${d.bg};color:${d.fg}">${d.short}</span><span>${d.id}<small>${d.sub}</small></span></label>`).join('');
 const drinkVal = () => (document.querySelector('input[name="drink"]:checked')||{}).value;
 const menuVal = () => (document.querySelector('input[name="menu"]:checked')||{}).value;
 const closed = Date.now() > new Date(CONFIG.DEADLINE).getTime();
-function refresh(){ $('sum').innerHTML = `<b>${menuVal()}</b> · <b>${drinkVal()}</b>`; }
+const esc = t => String(t||'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const dTxt = (d, n) => esc(d) + (n ? ` (${esc(n)})` : '');
+const needNote = () => { const d = DRINKS.find(x => x.id === drinkVal()); return d && d.ph ? d : null; };
+function refresh(){
+  const nd = needNote();
+  $('noteBox').classList.toggle('on', !!nd);
+  if (nd) $('note').placeholder = nd.ph;
+  const n = $('note').value.trim();
+  $('sum').innerHTML = `<b>${menuVal()}</b> · <b>${drinkVal()}</b>${nd && n ? ` (${n.replace(/</g,'&lt;')})` : ''}`;
+}
+document.addEventListener('input', e => { if (e.target.id === 'note') refresh(); });
 document.addEventListener('change', refresh); refresh();
 if (closed){ $('closed').style.display='block'; $('go').disabled = true; $('go').textContent='신청 마감'; }
 
@@ -177,26 +190,28 @@ function modal(title, body, buttons, ok=true){
   $('modal').classList.add('on');
 }
 const hide = () => $('modal').classList.remove('on');
-const showMine = (menu, drink) => { $('mine').style.display='block'; $('mine').innerHTML = `내 신청: <b>${menu}</b> · <b>${drink}</b> <span style="opacity:.7">(다시 신청하면 바뀝니다)</span>`; };
+const showMine = (menu, drink, note) => { $('mine').style.display='block'; $('mine').innerHTML = `내 신청: <b>${esc(menu)}</b> · <b>${dTxt(drink, note)}</b> <span style="opacity:.7">(다시 신청하면 바뀝니다)</span>`; };
 
 async function send(overwrite){
-  const data = { name:$('name').value.trim(), menu:menuVal(), drink:drinkVal(), overwrite:!!overwrite };
+  const data = { name:$('name').value.trim(), menu:menuVal(), drink:drinkVal(), note: needNote() ? $('note').value.trim() : '', overwrite:!!overwrite };
   $('go').disabled = true; $('go').textContent = '보내는 중...';
   try{
     const j = await (await fetch(CONFIG.API_URL, { method:'POST', body: JSON.stringify(data) })).json();
     if (j.status==='exists'){
-      modal('이미 신청하셨어요', `${data.name} 님은 <b>${j.menu} · ${ro(j.drink)}</b> 신청되어 있어요.<br><b>${data.menu} · ${ro(data.drink)}</b> 바꿀까요?`,
+      modal('이미 신청하셨어요', `${esc(data.name)} 님은 이미 신청하셨어요.<br>지금: <b>${esc(j.menu)} · ${dTxt(j.drink, j.note)}</b><br>새로: <b>${esc(data.menu)} · ${dTxt(data.drink, data.note)}</b><br>새로 고른 것으로 바꿀까요?`,
         [{label:'새로 고른 것으로 변경', on:()=>{hide(); send(true);}}, {label:'그대로 두기', cls:'sec', on:hide}], false);
     } else if (j.status==='ok' || j.status==='updated'){
       localStorage.setItem('lunch1109', data.name);
-      showMine(j.menu, j.drink);
-      modal(j.status==='ok'?'신청 완료':'변경 완료', `<b>${data.name}</b> 님<br><b>${j.menu}</b> · <b>${j.drink}</b><br><br>11월 9일 희락반점에서 뵙겠습니다.`, [{label:'확인', on:hide}]);
+      showMine(j.menu, j.drink, j.note);
+      modal(j.status==='ok'?'신청 완료':'변경 완료', `<b>${esc(data.name)}</b> 님<br><b>${esc(j.menu)}</b> · <b>${dTxt(j.drink, j.note)}</b><br><br>11월 9일 희락반점에서 뵙겠습니다.`, [{label:'확인', on:hide}]);
     } else modal('신청이 안 됐어요', j.message || '잠시 후 다시 시도해 주세요.', [{label:'확인', on:hide}], false);
   }catch(e){ modal('연결이 원활하지 않아요', '잠시 후 다시 시도해 주세요.', [{label:'확인', on:hide}], false); }
   finally{ if(!closed){ $('go').disabled = false; $('go').textContent = '신청하기'; } }
 }
 $('go').onclick = () => {
   if (!$('name').value.trim()){ modal('이름을 적어 주세요', '', [{label:'확인', on:()=>{hide(); $('name').focus();}}], false); return; }
+  const nd = needNote();
+  if (nd && !$('note').value.trim()){ modal(`${nd.id} 요청사항을 적어 주세요`, nd.ph, [{label:'확인', on:()=>{hide(); $('note').focus();}}], false); return; }
   send(false);
 };
 (async () => {
@@ -204,7 +219,7 @@ $('go').onclick = () => {
     const saved = localStorage.getItem('lunch1109'); if (!saved) return;
     $('name').value = saved;
     const j = await (await fetch(`${CONFIG.API_URL}?action=lookup&name=${encodeURIComponent(saved)}`)).json();
-    if (j.status==='found'){ showMine(j.menu, j.drink); const mi = document.querySelector(`input[name="menu"][value="${j.menu}"]`); if (mi) mi.checked = true; const di = document.querySelector(`input[name="drink"][value="${j.drink}"]`); if (di) di.checked = true; refresh(); }
+    if (j.status==='found'){ showMine(j.menu, j.drink, j.note); if (j.note) $('note').value = j.note; const mi = document.querySelector(`input[name="menu"][value="${j.menu}"]`); if (mi) mi.checked = true; const di = document.querySelector(`input[name="drink"][value="${j.drink}"]`); if (di) di.checked = true; refresh(); }
   }catch(e){}
 })();
 </script>
