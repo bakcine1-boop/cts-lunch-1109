@@ -342,7 +342,7 @@ $('vidSound').onclick = () => { if (vEl.muted) { vEl.muted = false; vEl.volume =
 vEl.addEventListener('volumechange', syncSound);
 vEl.addEventListener('ended', closeVid);
 $('vmodal').addEventListener('click', e => { if (e.target.id === 'vmodal') closeVid(); });
-if (!location.hash) openVid(true);
+
 const ro = w => { const c = w.charCodeAt(w.length-1) - 0xAC00; const j = c % 28; return w + ((c < 0 || c > 11171 || j === 0 || j === 8) ? '로' : '으로'); };
 const won = n => n.toLocaleString('ko-KR') + '원';
 const chk = '<svg width="14" height="14" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
